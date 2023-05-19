@@ -1,2 +1,46 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="books.scss" />
+    <title>WebCampBuckendNew</title>
+  </head>
+
+  <body>
+    <h1>Books</h1>
+    <% @books.each do |list| %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= list.title %></td>
+          <td><%= list.body %></td>
+          <td><%= link_to 'Show', book_path(list.id) %></td>
+          <td><%= link_to 'Edit', edit_list_path(list.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <% end %>
+
+    <h1>New book</h1>
+    <!-- form_with部分 -->
+    <!--url: '/books', と記載することで、/booksにここで入力した情報が送信される-->
+    <%= form_with model: @book, url: '/books', method: :post do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+
+      <h4>Body</h4>
+      <%= f.text_area :body %>
+
+      <%= f.submit 'Create Book' %>
+    <% end %>
+  </body>
+
+</html>

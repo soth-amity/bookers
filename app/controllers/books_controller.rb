@@ -1,8 +1,4 @@
 class BooksController < ApplicationController
-  def new
-    @book = Book.new
-  end
-
   def create
     @book = Book.new(list_params)
     #savaでデータ保存している
